@@ -97,7 +97,7 @@ namespace DreemurrStudio.UIExtension.VideoPlayControl
             float seekTime = value * FullTime;
             mediaPlayer.Control.Seek(seekTime);
             TimeSpan timeSpan = TimeSpan.FromSeconds(seekTime);
-            progressTimeText.text = string.Format(timeFormatString, timeSpan.Minutes, timeSpan.Seconds, _fullTimeSpan.Minutes, _fullTimeSpan.Seconds);
+            if(progressTimeText != null) progressTimeText.text = string.Format(timeFormatString, timeSpan.Minutes, timeSpan.Seconds, _fullTimeSpan.Minutes, _fullTimeSpan.Seconds);
         }
 
         private void OnMediaPlayerEvent(MediaPlayer mp, MediaPlayerEvent.EventType et, ErrorCode ec)
@@ -119,12 +119,12 @@ namespace DreemurrStudio.UIExtension.VideoPlayControl
             {
                 progressSlider.SetValueWithoutNotify(currentTime / FullTime);
                 TimeSpan timeSpan = TimeSpan.FromSeconds(currentTime);
-                progressTimeText.text = string.Format(timeFormatString, timeSpan.Minutes, timeSpan.Seconds, _fullTimeSpan.Minutes, _fullTimeSpan.Seconds);
+                if (progressTimeText != null) progressTimeText.text = string.Format(timeFormatString, timeSpan.Minutes, timeSpan.Seconds, _fullTimeSpan.Minutes, _fullTimeSpan.Seconds);
             }
             else
             {
                 progressSlider.SetValueWithoutNotify(0f);
-                progressTimeText.text = string.Format(timeFormatString, 0, 0,_fullTimeSpan.Minutes, _fullTimeSpan.Seconds);
+                if (progressTimeText != null) progressTimeText.text = string.Format(timeFormatString, 0, 0,_fullTimeSpan.Minutes, _fullTimeSpan.Seconds);
             }
         }
 
