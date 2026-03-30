@@ -2,9 +2,15 @@
 
 ## 概述
 
-本模块为 Unity 项目提供了一套常用的 UI 扩展组件，目前包含 **视频播放控制** 功能。它基于现成的视频播放器插件（如 AVPro Video 的 `MediaPlayer`），封装了播放进度控制和播放/暂停切换的 UI 逻辑，使你可以通过拖拽和少量配置快速搭建视频播放面板
+本模块为 Unity 项目提供了一套常用的 UI 扩展组件，目前包含 **视频播放控制** 与 **循环滚动视图** 功能。它通过封装常见交互逻辑与 UI 行为，帮助你快速构建可复用的界面组件
 
 ## 当前包含的功能
+
+*   **循环滚动视图 (`LoopSelectScrollView`)**
+    *   支持循环滚动的选择型 UI 视图，中心项自动放大
+    *   支持索引按钮与下方 Toggle 快速跳转
+    *   支持自动生成按钮实例或绑定已有 UI
+    *   支持拖动滚动与索引跳转的平滑移动动画
 
 *   **视频播放进度控制 (`MediaPlayProgressSlider`)**
     *   基于 `Slider` 的视频进度条组件
@@ -22,6 +28,36 @@
 ---
 
 ## 快速开始
+
+### 一、循环滚动视图 `LoopSelectScrollView`
+
+`LoopSelectScrollView` 提供循环滚动、中心项放大、索引跳转等常用交互，适合用于角色选择、卡牌轮播、商品展示等场景
+
+#### 1. 场景准备
+
+1. 创建一个 `ScrollRect` 并设置为横向滚动
+2. 准备一个用于显示内容按钮的 `HorizontalLayoutGroup`
+3. 准备一个用于索引跳转的 `ToggleGroup`
+4. 在场景中创建空对象并挂载 `LoopSelectScrollView` 脚本
+5. 在 Inspector 中绑定以下字段：
+   * `Scroll Rect`
+   * `Button Group`
+   * `Toggle Group`
+   * `Scale Check Area`（用于中心缩放检测）
+   * `Button Prefab`、`Toggle Prefab`
+
+#### 2. 运行时初始化
+
+你可以调用 `Init(List<Sprite> sprites, int defaultIndex)` 在运行时初始化
+
+示例逻辑：
+- 如果 `Create Instance` 为 `true`，脚本会自动生成按钮与 Toggle
+- 如果为 `false`，脚本会绑定现有 UI
+- 调用 `MoveToIndex` 可快速跳转
+
+---
+
+### 二、视频播放控制
 
 ### 1. 环境准备
 
@@ -67,7 +103,7 @@
 
 ## 推荐使用方式
 
-一般情况下，你可以创建一个统一的视频播放面板预制体，例如：
+### 视频播放控制预制体结构
 
 * 根对象：`VideoPlayPanel`
     * 子对象：`MediaPlayer`（视频输出与控制）
@@ -75,8 +111,13 @@
     * 子对象：`PlayToggle`（挂载 `MediaPlayStateSwitchToggle`）
     * 可选子对象：时间显示文本、标题、关闭按钮等
 
-在不同场景中直接实例化 `VideoPlayPanel` 并更换视频源即可复用完整的视频播放控制 UI
+### 循环滚动视图结构建议
 
---- 
+* 根对象：`LoopSelectScrollView`
+    * `ScrollRect`
+        * `Content`（绑定为 `Button Group`）
+    * `ToggleGroup`（绑定为索引跳转组）
 
-本模块后续可以扩展更多 UI 功能（如循环滚动视图、分页控件等），但当前版本主要聚焦于视频播放控制 UI 的封装
+---
+
+本模块后续可以扩展更多 UI 功能，目前版本已包含视频播放控制与循环滚动视图

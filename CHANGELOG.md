@@ -3,6 +3,14 @@
 > 此文件记录了该软件包所有重要的变更
 > 文件格式基于 [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 更新日志规范，且此项目版本号遵循 [语义化版本](http://semver.org/spec/v2.0.0.html) 规范
 
+## [2.0.0] - 2026-3-30
+### 新增
+- **循环滚动视图 (`LoopSelectScrollView`)**:
+  - 提供可循环滚动的选择型 UI 视图，支持中心滚动放大效果
+  - 支持索引按钮与下方快速切换 Toggle
+  - 支持自动生成按钮实例或绑定已有 UI
+  - 支持拖动与索引跳转的平滑移动动画
+	
 ## [1.3.0] - 2025-10-31
 ### 更改
 - 将视频播放控制相关脚本和预制体统一移动到 `Assets/Plugins/DreemurrStudio/UIExtension/VideoPlayControl` 目录下

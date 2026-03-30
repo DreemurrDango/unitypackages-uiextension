@@ -1,0 +1,14 @@
+{
+    "name": "DreemurrStudio.UIExtension.LoopScrollView",
+    "rootNamespace": "DreemurrStudio.UIExtension.LoopScrollView",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
